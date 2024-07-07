@@ -1,0 +1,8 @@
+version: 1
+common:
+  resourcesPath: ./components
+apps:
+  - appID: main-web-app
+    appDirPath: ./main-web-app/
+    appPort: 3000
+    command: ["npm", "run", "start"]

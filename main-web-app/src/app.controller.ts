@@ -28,10 +28,8 @@ export class AppController {
 
   @Post('/text-summary')
   @Render('text-summary')
-  postTextSummary(@Body() requestBody: TextSummaryRequestBody): {
-    bodyText: string;
-  } {
-    return { bodyText: requestBody.submitText };
+  postTextSummary(@Body() requestBody: TextSummaryRequestBody) {
+    this.appService.publishText({ text: requestBody.submitText });
   }
 
   @Get('/image-coloring')
@@ -41,10 +39,7 @@ export class AppController {
   @Post('/image-coloring')
   @Render('image-coloring')
   @UseInterceptors(FileInterceptor('inputImage'))
-  postImageColoring(@UploadedFile() file: Express.Multer.File): {
-    bodyText: string;
-  } {
-    console.log('>> file', file);
-    return { bodyText: 'hello' };
+  postImageColoring(@UploadedFile() file: Express.Multer.File) {
+    this.appService.publishImage({ file });
   }
 }
